@@ -14,12 +14,16 @@ class NegociacaoController {
     adiciona(event) {
 
         event.preventDefault();
-        this._listaNegociacoes.adiciona(this._criaNegociacao());
-        this._mensagem.texto = "Negociação adicionada com sucesso";
 
-        this._limparCampos();
+        try {
+            this._listaNegociacoes.adiciona(this._criaNegociacao());
+            this._mensagem.texto = "Negociação adicionada com sucesso";
 
-        console.log(this._listaNegociacoes.negociacoes);
+            this._limparCampos();
+            console.log(this._listaNegociacoes.negociacoes);
+        } catch (erro) {
+            this._mensagem.texto = erro;
+        }
     }
 
     importarNegociacoes() {
